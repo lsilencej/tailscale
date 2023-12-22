@@ -4,8 +4,8 @@ WORKDIR /app
 
 # ========= CONFIG =========
 # - download links
-ENV MODIFIED_DERPER_GIT=https://github.com/lsilencej/tailscale.git # 更改此处
-ENV BRANCH=main # 更改此处
+ENV MODIFIED_DERPER_GIT=https://github.com/lsilencej/tailscale.git
+ENV BRANCH=main
 # ==========================
 
 # build modified derper
