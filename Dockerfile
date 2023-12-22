@@ -15,7 +15,7 @@ RUN git clone -b $BRANCH $MODIFIED_DERPER_GIT tailscale --depth 1 && \
     cd /app && \
     rm -rf /app/tailscale
 
-FROM ubuntu:latest
+FROM ubuntu:20.04
 WORKDIR /app
 
 # ========= CONFIG =========
@@ -26,9 +26,11 @@ ENV DERP_STUN true
 ENV DERP_VERIFY_CLIENTS false
 # ==========================
 
+RUN echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main" > /etc/apt/sources.list
+
 # apt
 RUN apt-get update && \
-    apt-get install -y openssl curl libc6=2.32-0ubuntu3 libc6=2.34-0ubuntu3
+    apt-get install -y openssl curl libc6
 
 COPY build_cert.sh /app/
 COPY --from=builder /app/derper /app/derper
