@@ -15,7 +15,8 @@ RUN git clone -b $BRANCH $MODIFIED_DERPER_GIT tailscale --depth 1 && \
     cd /app && \
     rm -rf /app/tailscale
 
-FROM ubuntu:20.04
+FROM alpine:3.18
+RUN apk add --no-cache ca-certificates libc6-compat
 WORKDIR /app
 
 # ========= CONFIG =========
