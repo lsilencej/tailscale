@@ -15,8 +15,7 @@ RUN git clone -b $BRANCH $MODIFIED_DERPER_GIT tailscale --depth 1 && \
     cd /app && \
     rm -rf /app/tailscale
 
-FROM alpine:3.18
-RUN apk add --no-cache ca-certificates libc6-compat
+FROM ubuntu:latest
 WORKDIR /app
 
 # ========= CONFIG =========
@@ -29,7 +28,7 @@ ENV DERP_VERIFY_CLIENTS false
 
 # apt
 RUN apt-get update && \
-    apt-get install -y openssl curl
+    apt-get install -y openssl curl libc6=2.32-0ubuntu3 libc6=2.34-0ubuntu3
 
 COPY build_cert.sh /app/
 COPY --from=builder /app/derper /app/derper
